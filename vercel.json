@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/index.py",
+      "src": "myproject/wsgi.py",
       "use": "@vercel/python"
     }
   ],
@@ -16,9 +16,17 @@
       "dest": "/media/$1"
     },
     {
+      "src": "/favicon.ico",
+      "dest": "/static/favicon.ico"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/api/index.py"
+      "dest": "myproject/wsgi.py"
     }
-  ]
+  ],
+  "env": {
+    "DJANGO_SETTINGS_MODULE": "myproject.settings",
+    "PYTHONPATH": "."
+  }
 }
 

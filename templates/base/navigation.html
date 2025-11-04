@@ -8,19 +8,24 @@
     left: 0 !important;
     right: 0 !important;
     width: 100% !important;
+    height: 100px !important;
     z-index: 9999 !important;
     background: transparent !important;
     padding: 0 !important;
     margin: 0 !important;
-    height: 100px !important;
     box-shadow: none !important;
     /* 关键：完全禁用所有动画和过渡，防止任何移动 */
     transition: none !important;
     animation: none !important;
-    transform: none !important;
+    transform: translateZ(0) !important;
     /* 关键：防止重排影响导航栏 - 使用contain包裹 */
     contain: layout style paint !important;
     isolation: isolate !important;
+    /* 关键：防止任何位置变化 */
+    will-change: auto !important;
+    backface-visibility: hidden !important;
+    /* 关键：防止滚动影响 */
+    overscroll-behavior: none !important;
   }
 
   /* 导航栏容器 - 完全固定，包裹块效果 */
@@ -325,10 +330,14 @@
   (function() {
     'use strict';
     
-    // 锁定导航栏位置
+    // 锁定导航栏位置 - 完全固定，禁止任何移动
     function lockNavigation() {
       const header = document.querySelector('header');
       const headerContainer = document.querySelector('.header-container');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const logo = document.querySelector('.logo');
+      const loginBtn = document.querySelector('.login-btn');
+      const navLinksContainer = document.querySelector('.nav-links');
       
       if (header) {
         header.style.setProperty('position', 'fixed', 'important');
@@ -336,13 +345,60 @@
         header.style.setProperty('left', '0', 'important');
         header.style.setProperty('right', '0', 'important');
         header.style.setProperty('width', '100%', 'important');
+        header.style.setProperty('height', '100px', 'important');
+        header.style.setProperty('margin', '0', 'important');
+        header.style.setProperty('padding', '0', 'important');
+        header.style.setProperty('transform', 'translateZ(0)', 'important');
         header.style.setProperty('transition', 'none', 'important');
         header.style.setProperty('animation', 'none', 'important');
+        header.style.setProperty('will-change', 'auto', 'important');
+        header.style.setProperty('backface-visibility', 'hidden', 'important');
+        header.style.setProperty('overflow', 'visible', 'important');
       }
       
       if (headerContainer) {
+        headerContainer.style.setProperty('position', 'relative', 'important');
+        headerContainer.style.setProperty('margin', '20px auto 0 auto', 'important');
+        headerContainer.style.setProperty('margin-left', 'auto', 'important');
+        headerContainer.style.setProperty('margin-right', 'auto', 'important');
+        headerContainer.style.setProperty('transform', 'none', 'important');
         headerContainer.style.setProperty('transition', 'none', 'important');
         headerContainer.style.setProperty('animation', 'none', 'important');
+        headerContainer.style.setProperty('will-change', 'auto', 'important');
+        headerContainer.style.setProperty('left', 'auto', 'important');
+        headerContainer.style.setProperty('right', 'auto', 'important');
+        headerContainer.style.setProperty('top', 'auto', 'important');
+        headerContainer.style.setProperty('bottom', 'auto', 'important');
+      }
+      
+      if (navLinksContainer) {
+        navLinksContainer.style.setProperty('transform', 'none', 'important');
+        navLinksContainer.style.setProperty('transition', 'none', 'important');
+        navLinksContainer.style.setProperty('animation', 'none', 'important');
+      }
+      
+      // 锁定所有导航链接
+      navLinks.forEach(link => {
+        link.style.setProperty('transform', 'none', 'important');
+        link.style.setProperty('transition', 'none', 'important');
+        link.style.setProperty('animation', 'none', 'important');
+        link.style.setProperty('position', 'static', 'important');
+        link.style.setProperty('top', 'auto', 'important');
+        link.style.setProperty('left', 'auto', 'important');
+      });
+      
+      if (logo) {
+        logo.style.setProperty('transform', 'none', 'important');
+        logo.style.setProperty('transition', 'none', 'important');
+        logo.style.setProperty('animation', 'none', 'important');
+        logo.style.setProperty('position', 'static', 'important');
+      }
+      
+      if (loginBtn) {
+        loginBtn.style.setProperty('transform', 'none', 'important');
+        loginBtn.style.setProperty('transition', 'none', 'important');
+        loginBtn.style.setProperty('animation', 'none', 'important');
+        loginBtn.style.setProperty('position', 'static', 'important');
       }
     }
     
@@ -460,7 +516,9 @@
       });
     }
     
-    // 初始化
+    // 初始化 - 立即锁定导航栏
+    lockNavigation();
+    
     if (document.readyState !== 'loading') {
       lockNavigation();
       initNavigation();
@@ -470,6 +528,22 @@
         initNavigation();
       });
     }
+    
+    // 持续监听，确保导航栏始终固定
+    window.addEventListener('scroll', function() {
+      lockNavigation();
+    }, { passive: true });
+    
+    window.addEventListener('resize', function() {
+      lockNavigation();
+    }, { passive: true });
+    
+    // 使用requestAnimationFrame持续锁定
+    function continuousLock() {
+      lockNavigation();
+      requestAnimationFrame(continuousLock);
+    }
+    requestAnimationFrame(continuousLock);
     
     // 暴露全局函数供外部调用
     window.updateNavigation = function() {

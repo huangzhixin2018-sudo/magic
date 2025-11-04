@@ -1,0 +1,92 @@
+{% load static %}
+<!-- 左侧栏组件 - 优雅设计 -->
+<aside class="sidebar">
+  <h2 class="sidebar-title">{% block sidebar_title %}目录{% endblock %}</h2>
+  <ul class="sidebar-menu">
+    {% block sidebar_menu %}
+    <!-- 默认菜单项 -->
+    <li class="menu-item">
+      <a href="#section1" class="active">项目一</a>
+    </li>
+    <li class="menu-item">
+      <a href="#section2">项目二</a>
+    </li>
+    <li class="menu-item">
+      <a href="#section3">项目三</a>
+    </li>
+    {% endblock %}
+  </ul>
+</aside>
+
+<script>
+  // 左侧栏导航高亮跟随滚动
+  (function() {
+    'use strict';
+    
+    const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
+    const sections = document.querySelectorAll('main h1, main h2, .content h1, .content h2');
+    
+    if (sections.length === 0 || sidebarLinks.length === 0) return;
+    
+    // 滚动时更新active状态
+    function updateActiveLink() {
+      let current = '';
+      const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150; // 偏移量，考虑导航栏高度
+        if (scrollPosition >= sectionTop) {
+          current = section.getAttribute('id') || section.getAttribute('name');
+        }
+      });
+      
+      sidebarLinks.forEach(link => {
+        link.closest('.menu-item')?.classList.remove('active');
+        const href = link.getAttribute('href');
+        if (href && (href === '#' + current || href.includes(current))) {
+          link.closest('.menu-item')?.classList.add('active');
+        }
+      });
+    }
+    
+    // 点击菜单项平滑滚动
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          const targetId = href.substring(1);
+          const targetElement = document.getElementById(targetId) || document.querySelector(`[name="${targetId}"]`);
+          
+          if (targetElement) {
+            const offsetTop = targetElement.offsetTop - 120; // 考虑导航栏高度
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+            
+            // 更新active状态
+            sidebarLinks.forEach(l => l.closest('.menu-item')?.classList.remove('active'));
+            this.closest('.menu-item')?.classList.add('active');
+          }
+        }
+      });
+    });
+    
+    // 监听滚动事件
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          updateActiveLink();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+    
+    // 页面加载时初始化
+    updateActiveLink();
+  })();
+</script>
+

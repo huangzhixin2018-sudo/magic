@@ -1,0 +1,53 @@
+/* 基础样式 - 参考网站样式 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  background: linear-gradient(90deg, #fff0f5, #ffe4e1, #ffc0cb);
+  background-attachment: fixed;
+}
+
+body {
+  margin: 0;
+  font-family: "Hiragino Sans GB", "冬青黑体", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: linear-gradient(90deg, #fff0f5, #ffe4e1, #ffc0cb) !important;
+  background-attachment: fixed !important;
+  color: #1a252f;
+  line-height: 1.6;
+  overflow-x: hidden;
+  padding-top: 100px;
+  -webkit-overflow-scrolling: touch;
+  min-height: 100vh;
+  height: 100%;
+  position: relative;
+}
+
+/* 确保导航栏完全固定 */
+header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
+  transition: none !important;
+  animation: none !important;
+  will-change: auto !important;
+}
+
+
+/* 响应式 */
+@media (max-width: 768px) {
+  body {
+    padding-top: 88px;
+  }
+}

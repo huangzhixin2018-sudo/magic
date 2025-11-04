@@ -1,0 +1,9 @@
+/* 项目页面背景 - 使用参考网站的渐变色 */
+.project-page {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  background: linear-gradient(90deg, #fff0f5, #ffe4e1, #ffc0cb);
+  background-attachment: fixed;
+  z-index: 0;
+}

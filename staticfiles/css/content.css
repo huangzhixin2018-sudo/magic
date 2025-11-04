@@ -1,0 +1,17 @@
+/* 页面容器 - 确保背景显示 */
+.page-index,
+.page-syntax,
+.page-theme,
+.page-ai-programming,
+.page-function-library,
+.page-function-query,
+.project-page {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  height: calc(100vh - 100px);
+  background: linear-gradient(90deg, #fff0f5, #ffe4e1, #ffc0cb) !important;
+  background-attachment: fixed !important;
+  z-index: 0;
+  display: block;
+}

@@ -1,4 +1,4 @@
-/* 页面容器 - 优雅的三色渐变，从顶部覆盖全屏 */
+/* 页面容器 - 微微的粉红和蓝色渐变，从顶部覆盖全屏 */
 
 /* 使用伪元素确保背景显示，覆盖全屏包括顶部 */
 .page-index::before,
@@ -23,9 +23,9 @@
   background-size: 100% 100%;
 }
 
-/* 首页 - 柔和的灰蓝米色渐变，自然过渡 */
+/* 首页 - 微微的粉红和蓝色渐变 */
 .page-index::before {
-  background: linear-gradient(180deg, #f5f7fa 0%, #e3e8f0 40%, #f0f4f8 100%) !important;
+  background: linear-gradient(180deg, #fff0f5 0%, #f0f6ff 50%, #ffe4e1 100%) !important;
 }
 
 .page-index {
@@ -35,9 +35,9 @@
   z-index: 0;
 }
 
-/* 语法页面 - 清新的蓝绿渐变 */
+/* 语法页面 - 微微的粉红和蓝色渐变（稍有不同的色调） */
 .page-syntax::before {
-  background: linear-gradient(180deg, #e0f2fe 0%, #bae6fd 40%, #cffafe 100%) !important;
+  background: linear-gradient(180deg, #ffe0f0 0%, #e6f0ff 50%, #ffe4e6 100%) !important;
 }
 
 .page-syntax {
@@ -47,9 +47,9 @@
   z-index: 0;
 }
 
-/* 主题页面 - 优雅的紫粉渐变 */
+/* 主题页面 - 微微的粉红和蓝色渐变 */
 .page-theme::before {
-  background: linear-gradient(180deg, #f5e6ff 0%, #e9d5ff 40%, #f3e8ff 100%) !important;
+  background: linear-gradient(180deg, #fff0f5 0%, #f0f6ff 50%, #ffe4e1 100%) !important;
 }
 
 .page-theme {
@@ -59,9 +59,9 @@
   z-index: 0;
 }
 
-/* AI编程页面 - 科技感的青蓝渐变 */
+/* AI编程页面 - 微微的粉红和蓝色渐变 */
 .page-ai-programming::before {
-  background: linear-gradient(180deg, #e0f7fa 0%, #b2ebf2 40%, #c5f3fa 100%) !important;
+  background: linear-gradient(180deg, #ffe0f0 0%, #e6f0ff 50%, #ffe4e6 100%) !important;
 }
 
 .page-ai-programming {
@@ -71,9 +71,9 @@
   z-index: 0;
 }
 
-/* 函数库页面 - 专业的蓝紫渐变 */
+/* 函数库页面 - 微微的粉红和蓝色渐变 */
 .page-function-library::before {
-  background: linear-gradient(180deg, #e0e7ff 0%, #c7d2fe 40%, #ddd6fe 100%) !important;
+  background: linear-gradient(180deg, #fff0f5 0%, #f0f6ff 50%, #ffe4e1 100%) !important;
 }
 
 .page-function-library {
@@ -83,9 +83,9 @@
   z-index: 0;
 }
 
-/* 函数查询页面 - 清新的绿蓝渐变 */
+/* 函数查询页面 - 微微的粉红和蓝色渐变 */
 .page-function-query::before {
-  background: linear-gradient(180deg, #d1fae5 0%, #a7f3d0 40%, #c6f6d5 100%) !important;
+  background: linear-gradient(180deg, #ffe0f0 0%, #e6f0ff 50%, #ffe4e6 100%) !important;
 }
 
 .page-function-query {
@@ -95,9 +95,9 @@
   z-index: 0;
 }
 
-/* 项目页面 - 柔和的灰蓝渐变 */
+/* 项目页面 - 微微的粉红和蓝色渐变 */
 .project-page::before {
-  background: linear-gradient(180deg, #f5f7fa 0%, #e3e8f0 40%, #f0f4f8 100%) !important;
+  background: linear-gradient(180deg, #fff0f5 0%, #f0f6ff 50%, #ffe4e1 100%) !important;
 }
 
 .project-page {

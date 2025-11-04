@@ -7,6 +7,14 @@
   <title>{% block title %}我的网站{% endblock %}</title>
   <link rel="stylesheet" href="{% static 'css/base.css' %}">
   <link rel="stylesheet" href="{% static 'css/content.css' %}">
+  <!-- 预加载关键资源，提升点击性能 -->
+  <link rel="prefetch" href="{% url 'myapp:index' %}">
+  <link rel="prefetch" href="{% url 'myapp:syntax' %}">
+  <link rel="prefetch" href="{% url 'myapp:function_library' %}">
+  <link rel="prefetch" href="{% url 'myapp:function_query' %}">
+  <link rel="prefetch" href="{% url 'myapp:theme' %}">
+  <link rel="prefetch" href="{% url 'myapp:ai_programming' %}">
+  <link rel="prefetch" href="{% url 'myapp:project' %}">
   {% block extra_css %}{% endblock %}
 </head>
 <body>

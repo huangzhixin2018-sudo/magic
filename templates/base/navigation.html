@@ -140,7 +140,7 @@
     /* 完全禁用所有动效和变换 */
     transition: none !important;
     animation: none !important;
-    transform: none !important;
+    /* 不设置transform: none，因为active下划线需要transform */
     will-change: auto;
     backface-visibility: hidden;
     /* 防止点击时的视觉移动 */
@@ -153,6 +153,8 @@
     touch-action: manipulation;
     /* 禁用加载指示器 - 不显示转圈圈 */
     pointer-events: auto !important;
+    /* 防止布局抖动 */
+    contain: layout style;
   }
   
   /* 禁用加载状态的鼠标样式 */
@@ -217,15 +219,22 @@
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%) translateZ(0);
+    width: 80%;
+    max-width: 60px;
     height: 3px;
     background-color: #FFD700;
     pointer-events: none;
-    /* 禁用伪元素的动效 */
+    /* 禁用伪元素的动效，但保留transform用于居中 */
     transition: none !important;
     animation: none !important;
-    transform: none !important;
+    border-radius: 2px;
+    /* 防止抖动 */
+    will-change: auto !important;
+    backface-visibility: hidden !important;
+    /* 确保位置固定 */
+    position: absolute !important;
   }
 
   /* 登录按钮 - 无动效 */
@@ -379,12 +388,16 @@
       
       // 锁定所有导航链接
       navLinks.forEach(link => {
-        link.style.setProperty('transform', 'none', 'important');
+        // 锁定transition和animation，但保留position: relative用于伪元素定位
         link.style.setProperty('transition', 'none', 'important');
         link.style.setProperty('animation', 'none', 'important');
-        link.style.setProperty('position', 'static', 'important');
+        link.style.setProperty('position', 'relative', 'important');
+        // 确保链接本身不会移动
         link.style.setProperty('top', 'auto', 'important');
         link.style.setProperty('left', 'auto', 'important');
+        link.style.setProperty('right', 'auto', 'important');
+        link.style.setProperty('bottom', 'auto', 'important');
+        // 不锁定链接的transform，因为active下划线需要transform
       });
       
       if (logo) {
@@ -520,30 +533,47 @@
     lockNavigation();
     
     if (document.readyState !== 'loading') {
-      lockNavigation();
       initNavigation();
+      // 立即再次锁定，确保完全固定
+      requestAnimationFrame(lockNavigation);
+      setTimeout(lockNavigation, 0);
     } else {
       document.addEventListener('DOMContentLoaded', function() {
-        lockNavigation();
         initNavigation();
+        requestAnimationFrame(lockNavigation);
+        setTimeout(lockNavigation, 0);
       });
     }
     
-    // 持续监听，确保导航栏始终固定
-    window.addEventListener('scroll', function() {
-      lockNavigation();
-    }, { passive: true });
+    // 持续锁定导航栏，防止任何移动（降低频率，避免性能问题）
+    let lockTimer = null;
+    let isLocking = false;
+    function continuousLock() {
+      if (!isLocking) {
+        isLocking = true;
+        lockNavigation();
+        isLocking = false;
+      }
+      lockTimer = setTimeout(continuousLock, 200);
+    }
+    continuousLock();
     
+    // 页面可见性变化时重新锁定
+    document.addEventListener('visibilitychange', lockNavigation);
+    
+    // 窗口大小变化时重新锁定
     window.addEventListener('resize', function() {
       lockNavigation();
     }, { passive: true });
     
-    // 使用requestAnimationFrame持续锁定
-    function continuousLock() {
+    // 滚动时确保导航栏不动
+    window.addEventListener('scroll', function() {
       lockNavigation();
-      requestAnimationFrame(continuousLock);
-    }
-    requestAnimationFrame(continuousLock);
+    }, { passive: true });
+    
+    // 触摸事件时锁定
+    document.addEventListener('touchstart', lockNavigation, { passive: true });
+    document.addEventListener('touchmove', lockNavigation, { passive: true });
     
     // 暴露全局函数供外部调用
     window.updateNavigation = function() {

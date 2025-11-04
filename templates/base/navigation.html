@@ -212,7 +212,8 @@
     opacity: 1;
     /* 确保 active 状态无动效 */
     transition: none !important;
-    transform: none !important;
+    /* 不设置transform: none，因为下划线需要transform */
+    will-change: auto !important;
   }
 
   .nav-link.active::after {
@@ -386,18 +387,22 @@
         navLinksContainer.style.setProperty('animation', 'none', 'important');
       }
       
-      // 锁定所有导航链接
+      // 锁定所有导航链接（避免重复设置样式导致抖动）
+      if (!navLinks.length) return;
+      
       navLinks.forEach(link => {
-        // 锁定transition和animation，但保留position: relative用于伪元素定位
-        link.style.setProperty('transition', 'none', 'important');
-        link.style.setProperty('animation', 'none', 'important');
-        link.style.setProperty('position', 'relative', 'important');
-        // 确保链接本身不会移动
-        link.style.setProperty('top', 'auto', 'important');
-        link.style.setProperty('left', 'auto', 'important');
-        link.style.setProperty('right', 'auto', 'important');
-        link.style.setProperty('bottom', 'auto', 'important');
-        // 不锁定链接的transform，因为active下划线需要transform
+        // 只设置必要的样式，避免重复设置导致抖动
+        if (link.style.transition !== 'none') {
+          link.style.setProperty('transition', 'none', 'important');
+        }
+        if (link.style.animation !== 'none') {
+          link.style.setProperty('animation', 'none', 'important');
+        }
+        // 确保position是relative（用于伪元素定位）
+        if (link.style.position !== 'relative') {
+          link.style.setProperty('position', 'relative', 'important');
+        }
+        // 不修改transform，因为active下划线需要transform居中
       });
       
       if (logo) {
@@ -545,16 +550,18 @@
       });
     }
     
-    // 持续锁定导航栏，防止任何移动（降低频率，避免性能问题）
+    // 持续锁定导航栏，防止任何移动（降低频率，避免性能问题和抖动）
     let lockTimer = null;
-    let isLocking = false;
+    let lastLockTime = 0;
+    const LOCK_INTERVAL = 300; // 300ms锁定一次，避免过于频繁
+    
     function continuousLock() {
-      if (!isLocking) {
-        isLocking = true;
+      const now = Date.now();
+      if (now - lastLockTime >= LOCK_INTERVAL) {
         lockNavigation();
-        isLocking = false;
+        lastLockTime = now;
       }
-      lockTimer = setTimeout(continuousLock, 200);
+      lockTimer = setTimeout(continuousLock, LOCK_INTERVAL);
     }
     continuousLock();
     

@@ -1,16 +1,84 @@
-/* 页面容器 - 确保背景显示 */
-.page-index,
-.page-syntax,
-.page-theme,
-.page-ai-programming,
-.page-function-library,
-.page-function-query,
+/* 页面容器 - 简约风格渐变背景，凸显白色导航栏 */
+
+/* 首页 - 参考项目页面的柔和渐变 */
+.page-index {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  height: calc(100vh - 100px);
+  background: linear-gradient(90deg, #f5f0f0, #f0f6ff, #f9f5f2) !important;
+  background-attachment: fixed !important;
+  z-index: 0;
+  display: block;
+}
+
+/* 语法页面 - 柔和的蓝绿色渐变 */
+.page-syntax {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  height: calc(100vh - 100px);
+  background: linear-gradient(90deg, #f0f9ff, #f0fdf4, #fefce8) !important;
+  background-attachment: fixed !important;
+  z-index: 0;
+  display: block;
+}
+
+/* 主题页面 - 柔和的紫色渐变 */
+.page-theme {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  height: calc(100vh - 100px);
+  background: linear-gradient(90deg, #faf5ff, #f3e8ff, #fce7f3) !important;
+  background-attachment: fixed !important;
+  z-index: 0;
+  display: block;
+}
+
+/* AI编程页面 - 柔和的青色渐变 */
+.page-ai-programming {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  height: calc(100vh - 100px);
+  background: linear-gradient(90deg, #ecfeff, #f0fdfa, #f0fdf4) !important;
+  background-attachment: fixed !important;
+  z-index: 0;
+  display: block;
+}
+
+/* 函数库页面 - 柔和的蓝色渐变 */
+.page-function-library {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  height: calc(100vh - 100px);
+  background: linear-gradient(90deg, #eff6ff, #f0f9ff, #f0f4ff) !important;
+  background-attachment: fixed !important;
+  z-index: 0;
+  display: block;
+}
+
+/* 函数查询页面 - 柔和的绿色渐变 */
+.page-function-query {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  height: calc(100vh - 100px);
+  background: linear-gradient(90deg, #f0fdf4, #ecfdf5, #f0fdfa) !important;
+  background-attachment: fixed !important;
+  z-index: 0;
+  display: block;
+}
+
+/* 项目页面 - 参考网站的原始风格 */
 .project-page {
   position: relative;
   width: 100%;
   min-height: calc(100vh - 100px);
   height: calc(100vh - 100px);
-  background: linear-gradient(90deg, #fff0f5, #ffe4e1, #ffc0cb) !important;
+  background: linear-gradient(90deg, #f5f0f0, #f0f6ff, #f9f5f2) !important;
   background-attachment: fixed !important;
   z-index: 0;
   display: block;

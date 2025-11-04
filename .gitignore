@@ -29,9 +29,10 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 /media
-/staticfiles
-/static_root
-staticfiles/
+# Keep staticfiles for Vercel deployment
+# /staticfiles
+# /static_root
+# staticfiles/
 
 # IDE
 .vscode/

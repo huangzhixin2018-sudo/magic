@@ -31,74 +31,56 @@
 
 /* 页面特定渐变色背景 - 覆盖body背景 */
 .page-index {
-  position: fixed;
-  top: 100px;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
   width: 100%;
-  background: linear-gradient(90deg, #f5f1f0, #f1f7ff, #faf6f3);
   min-height: calc(100vh - 100px);
+  background: linear-gradient(90deg, #f5f1f0, #f1f7ff, #faf6f3);
+  background-attachment: fixed;
   z-index: 0;
 }
 
 .page-syntax {
-  position: fixed;
-  top: 100px;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
   width: 100%;
-  background: linear-gradient(90deg, #f4f0f0, #f0f5ff, #f8f4f2);
   min-height: calc(100vh - 100px);
+  background: linear-gradient(90deg, #f4f0f0, #f0f5ff, #f8f4f2);
+  background-attachment: fixed;
   z-index: 0;
 }
 
 .page-theme {
-  position: fixed;
-  top: 100px;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
   width: 100%;
-  background: linear-gradient(90deg, #f6f2f1, #f2f8ff, #faf5f3);
   min-height: calc(100vh - 100px);
+  background: linear-gradient(90deg, #f6f2f1, #f2f8ff, #faf5f3);
+  background-attachment: fixed;
   z-index: 0;
 }
 
 .page-ai-programming {
-  position: fixed;
-  top: 100px;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
   width: 100%;
-  background: linear-gradient(90deg, #f5f0f1, #f1f6ff, #f9f4f3);
   min-height: calc(100vh - 100px);
+  background: linear-gradient(90deg, #f5f0f1, #f1f6ff, #f9f4f3);
+  background-attachment: fixed;
   z-index: 0;
 }
 
 .page-function-library {
-  position: fixed;
-  top: 100px;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
   width: 100%;
-  background: linear-gradient(90deg, #f4f1f0, #f0f7ff, #f8f5f2);
   min-height: calc(100vh - 100px);
+  background: linear-gradient(90deg, #f4f1f0, #f0f7ff, #f8f5f2);
+  background-attachment: fixed;
   z-index: 0;
 }
 
 .page-function-query {
-  position: fixed;
-  top: 100px;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
   width: 100%;
-  background: linear-gradient(90deg, #f6f1f0, #f2f6ff, #faf4f2);
   min-height: calc(100vh - 100px);
+  background: linear-gradient(90deg, #f6f1f0, #f2f6ff, #faf4f2);
+  background-attachment: fixed;
   z-index: 0;
 }
 

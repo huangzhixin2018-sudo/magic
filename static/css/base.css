@@ -1,4 +1,4 @@
-/* 基础样式 - 简约风格设计，渐变覆盖全屏 */
+/* 基础样式 - 优雅的渐变设计，符合现代审美 */
 
 * {
   margin: 0;
@@ -11,18 +11,20 @@ html {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   height: 100%;
-  /* 默认背景 - 三色混合柔和渐变，覆盖顶部 */
-  background: linear-gradient(135deg, #f5f0f0 0%, #f0f6ff 50%, #f9f5f2 100%);
-  background-attachment: fixed;
   min-height: 100vh;
+  /* 优雅的默认渐变 - 从顶部开始 */
+  background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%) !important;
+  background-attachment: fixed !important;
 }
 
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  /* 默认背景 - 三色混合柔和渐变，覆盖顶部 */
-  background: linear-gradient(135deg, #f5f0f0 0%, #f0f6ff 50%, #f9f5f2 100%) !important;
+  /* 优雅的默认渐变 - 从顶部开始 */
+  background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%) !important;
   background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+  background-size: 100% 100% !important;
   color: #1a252f;
   line-height: 1.6;
   overflow-x: hidden;
@@ -33,7 +35,7 @@ body {
   position: relative;
 }
 
-/* 确保导航栏完全固定 */
+/* 确保导航栏完全固定且透明 */
 header {
   position: fixed !important;
   top: 0 !important;
@@ -46,8 +48,8 @@ header {
   animation: none !important;
   will-change: auto !important;
   background: transparent !important;
+  z-index: 9999 !important;
 }
-
 
 /* 响应式 */
 @media (max-width: 768px) {

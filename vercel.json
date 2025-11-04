@@ -9,15 +9,15 @@
   "routes": [
     {
       "src": "/static/(.*)",
-      "dest": "/static/$1"
+      "dest": "myproject/wsgi.py"
     },
     {
       "src": "/media/(.*)",
-      "dest": "/media/$1"
+      "dest": "myproject/wsgi.py"
     },
     {
       "src": "/favicon.ico",
-      "dest": "/static/favicon.ico"
+      "dest": "myproject/wsgi.py"
     },
     {
       "src": "/(.*)",
@@ -29,4 +29,3 @@
     "PYTHONPATH": "."
   }
 }
-

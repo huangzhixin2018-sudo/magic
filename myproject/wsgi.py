@@ -24,3 +24,10 @@ application = get_wsgi_application()
 
 # Vercel requires 'app' variable
 app = application
+
+# Handle static files in development
+if os.environ.get('DJANGO_SETTINGS_MODULE') == 'myproject.settings':
+    from django.conf import settings
+    from django.contrib.staticfiles.handlers import StaticFilesHandler
+    if settings.DEBUG:
+        application = StaticFilesHandler(application)

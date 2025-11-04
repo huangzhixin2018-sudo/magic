@@ -361,22 +361,66 @@
           link.classList.add('active');
         }
         
-        // 点击处理 - 极速优化，无加载指示器
-        link.addEventListener('click', function(e) {
+        // 极速跳转 - 使用mousedown提前准备，click时立即跳转
+        let isNavigating = false;
+        
+        link.addEventListener('mousedown', function(e) {
           const href = this.getAttribute('href');
           if (href && href !== '#' && href !== window.location.pathname) {
-            // 立即锁定导航栏
+            // 提前准备跳转，禁用所有动画和加载指示器
+            isNavigating = true;
             lockNavigation();
+            
+            // 禁用所有链接的指针事件，防止重复点击
+            navLinks.forEach(l => {
+              l.style.pointerEvents = 'none';
+              l.style.cursor = 'default';
+            });
+            
+            // 隐藏可能的加载指示器
+            const loaders = document.querySelectorAll('.loading, .spinner, [class*="loading"], [class*="spinner"]');
+            loaders.forEach(el => {
+              el.style.display = 'none';
+              el.style.visibility = 'hidden';
+              el.style.opacity = '0';
+            });
             
             // 更新active状态
             navLinks.forEach(l => l.classList.remove('active'));
             this.classList.add('active');
             this.blur();
-            
-            // 立即跳转，禁用加载指示器
-            this.style.pointerEvents = 'none';
-            window.location.href = href;
+          }
+        }, { passive: true });
+        
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href && href !== '#' && href !== window.location.pathname) {
+            // 立即阻止默认行为
             e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            
+            // 如果已经在mousedown时准备，立即跳转
+            if (isNavigating) {
+              // 使用replace而不是href，更快，并且不显示加载状态
+              try {
+                window.location.replace(href);
+              } catch(e) {
+                // 如果replace失败，使用href
+                window.location.href = href;
+              }
+            } else {
+              // 否则立即准备并跳转
+              lockNavigation();
+              navLinks.forEach(l => {
+                l.style.pointerEvents = 'none';
+                l.classList.remove('active');
+              });
+              this.classList.add('active');
+              this.blur();
+              window.location.replace(href);
+            }
+            return false;
           } else {
             // 当前页面，只更新active状态
             lockNavigation();
@@ -384,8 +428,9 @@
             this.classList.add('active');
             this.blur();
             e.preventDefault();
+            return false;
           }
-        }, { passive: false });
+        }, { passive: false, capture: true });
       });
     }
     

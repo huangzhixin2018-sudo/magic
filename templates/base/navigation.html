@@ -8,45 +8,62 @@
     left: 0 !important;
     right: 0 !important;
     width: 100% !important;
-    z-index: 9999;
-    background: transparent;
-    padding: 0;
-    margin: 0;
-    height: 100px;
-    /* 防止任何移动和重绘 */
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-    will-change: auto;
+    z-index: 9999 !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 100px !important;
+    box-shadow: none !important;
+    /* 关键：完全禁用所有动画和过渡，防止任何移动 */
     transition: none !important;
     animation: none !important;
+    transform: none !important;
+    /* 关键：防止重排影响导航栏 - 使用contain包裹 */
+    contain: layout style paint !important;
+    isolation: isolate !important;
   }
 
-  /* 导航栏容器 - 完全固定 */
+  /* 导航栏容器 - 完全固定，包裹块效果 */
   .header-container {
-    max-width: 1180px;
-    width: 100%;
-    margin: 20px auto 0;
-    padding: 0 20px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #ffffff;
-    border-radius: 50px;
-    box-sizing: border-box;
-    /* 防止任何移动和重绘 */
-    position: relative;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    will-change: auto;
+    max-width: 1180px !important;
+    width: 100% !important;
+    /* 关键：初始使用margin:auto居中 */
+    margin: 20px auto 0 auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 20px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    height: 80px !important;
+    min-height: 80px !important;
+    max-height: 80px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    background: #ffffff !important;
+    border-radius: 50px !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    box-shadow: none !important;
+    /* 关键：完全禁用所有动画和过渡，防止任何移动 */
     transition: none !important;
     animation: none !important;
+    transform: none !important;
+    left: auto !important;
+    right: auto !important;
+    /* 关键：防止重排影响导航栏 - 使用contain包裹块 */
+    contain: layout style paint !important;
+    isolation: isolate !important;
+    /* 关键：使用稳定的滚动条间距 */
+    scrollbar-gutter: stable !important;
+    /* 关键：防止任何可能导致位置变化的属性 */
+    will-change: auto !important;
+    backface-visibility: visible !important;
   }
 
   @media (min-width: 1200px) {
     .header-container {
-      min-width: 1180px;
+      min-width: 1180px !important;
     }
   }
 
@@ -224,10 +241,12 @@
   /* 移动端响应式 */
   @media (max-width: 768px) {
     .header-container {
-      height: 76px;
-      padding: 0 16px;
-      border-radius: 40px;
-      margin: 22px auto 0;
+      height: 76px !important;
+      min-height: 76px !important;
+      max-height: 76px !important;
+      padding: 0 16px !important;
+      border-radius: 40px !important;
+      margin: 22px auto 0 !important;
     }
 
     .nav-links {

@@ -29,6 +29,73 @@
   align-items: flex-start;
 }
 
+/* 页面特定渐变色背景 - 覆盖body背景 */
+.page-index {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #f5f1f0, #f1f7ff, #faf6f3);
+  min-height: calc(100vh - 100px);
+  margin-top: 100px;
+}
+
+.page-syntax {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #f4f0f0, #f0f5ff, #f8f4f2);
+  min-height: calc(100vh - 100px);
+  margin-top: 100px;
+}
+
+.page-theme {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #f6f2f1, #f2f8ff, #faf5f3);
+  min-height: calc(100vh - 100px);
+  margin-top: 100px;
+}
+
+.page-ai-programming {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #f5f0f1, #f1f6ff, #f9f4f3);
+  min-height: calc(100vh - 100px);
+  margin-top: 100px;
+}
+
+.page-function-library {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #f4f1f0, #f0f7ff, #f8f5f2);
+  min-height: calc(100vh - 100px);
+  margin-top: 100px;
+}
+
+.page-function-query {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #f6f1f0, #f2f6ff, #faf4f2);
+  min-height: calc(100vh - 100px);
+  margin-top: 100px;
+}
+
 /* 项目页面专用布局 */
 .project-page .main-container {
   flex-direction: column;
@@ -44,13 +111,14 @@
 }
 
 .sidebar-card {
-  background: var(--card-bg);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
   border-radius: 12px;
   padding: 1.25rem;
   position: sticky;
   top: 100px;
-  border: 1px solid #f0f0f0;
-  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   max-height: calc(100vh - 120px);
   overflow-y: auto;
   margin-top: 0;
@@ -138,18 +206,14 @@
   /* 不在这里设置overflow，让body控制滚动 */
 }
 
+/* 移除article-card样式 - 不再使用卡片框架 */
 .article-card {
-  background: var(--card-bg);
-  border-radius: 12px;
-  padding: 2.5rem;
-  border: 1px solid #f0f0f0;
-  min-height: 70vh;
-  box-shadow: var(--shadow-sm);
-  /* 防止内容切换时抖动 */
-  contain: layout style paint;
-  will-change: auto;
-  transform: translateZ(0);
-  /* 与侧边栏顶部对齐 */
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  border: none;
+  min-height: auto;
+  box-shadow: none;
   margin-top: 0;
 }
 

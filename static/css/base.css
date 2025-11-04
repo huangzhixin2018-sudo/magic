@@ -16,13 +16,15 @@ html {
 body {
   margin: 0;
   font-family: "Hiragino Sans GB", "冬青黑体", "PingFang SC", "Microsoft YaHei", sans-serif;
-  background-color: #f8f9fa;
+  background: linear-gradient(90deg, #f5f0f0, #f0f6ff, #f9f5f2);
+  background-attachment: fixed;
   color: #1a252f;
   line-height: 1.6;
   overflow-x: hidden;
   padding-top: 100px;
   /* 防止导航栏移动 */
   -webkit-overflow-scrolling: touch;
+  min-height: 100vh;
 }
 
 /* 确保导航栏完全固定 */
@@ -38,6 +40,7 @@ header {
   animation: none !important;
   will-change: auto !important;
 }
+
 
 /* 响应式 */
 @media (max-width: 768px) {

@@ -1,21 +1,28 @@
 {% load static %}
 <!-- 统一导航栏模板 - 参考网站样式 -->
 <style>
-  /* 导航栏固定定位 */
+  /* 导航栏固定定位 - 完全固定，无动效 */
   header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
     z-index: 9999;
     background: transparent;
     padding: 0;
     margin: 0;
     height: 100px;
+    /* 防止任何移动和重绘 */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    will-change: auto;
+    transition: none !important;
+    animation: none !important;
   }
 
-  /* 导航栏容器 */
+  /* 导航栏容器 - 完全固定 */
   .header-container {
     max-width: 1180px;
     width: 100%;
@@ -28,6 +35,13 @@
     background: #ffffff;
     border-radius: 50px;
     box-sizing: border-box;
+    /* 防止任何移动和重绘 */
+    position: relative;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: auto;
+    transition: none !important;
+    animation: none !important;
   }
 
   @media (min-width: 1200px) {
@@ -36,7 +50,7 @@
     }
   }
 
-  /* Logo样式 */
+  /* Logo样式 - 无动效 */
   .logo {
     display: flex;
     align-items: center;
@@ -47,6 +61,12 @@
     font-family: "Hiragino Sans GB", "冬青黑体", "PingFang SC", "Microsoft YaHei", sans-serif;
     flex-shrink: 0;
     white-space: nowrap;
+    /* 禁用所有动效 */
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .logo-icon {
@@ -62,6 +82,10 @@
     font-size: 14px;
     margin-right: 10px;
     flex-shrink: 0;
+    /* 禁用所有动效 */
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
   }
 
   /* 导航链接容器 */
@@ -73,7 +97,7 @@
     justify-content: center;
   }
 
-  /* 导航链接 */
+  /* 导航链接 - 无动效，完全固定 */
   .nav-link {
     padding: 0;
     text-decoration: none;
@@ -89,18 +113,51 @@
     position: relative;
     opacity: 0.85;
     -webkit-tap-highlight-color: transparent;
-    outline: none;
+    outline: none !important;
     cursor: pointer;
+    /* 完全禁用所有动效和变换 */
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    will-change: auto;
+    backface-visibility: hidden;
+    /* 防止点击时的视觉移动 */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    /* 防止焦点时的移动 */
+    -webkit-touch-callout: none;
+    touch-action: manipulation;
   }
 
   .nav-link:hover {
     color: #0f1419;
     opacity: 1;
+    /* 禁用 hover 动效 */
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .nav-link:active {
+    /* 禁用 active 状态的动效 */
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .nav-link:focus {
+    /* 禁用 focus 状态的动效和移动 */
+    outline: none !important;
+    transform: none !important;
+    transition: none !important;
   }
 
   .nav-link.active {
     color: #0f1419;
     opacity: 1;
+    /* 确保 active 状态无动效 */
+    transition: none !important;
+    transform: none !important;
   }
 
   .nav-link.active::after {
@@ -112,9 +169,13 @@
     height: 3px;
     background-color: #FFD700;
     pointer-events: none;
+    /* 禁用伪元素的动效 */
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
   }
 
-  /* 登录按钮 */
+  /* 登录按钮 - 无动效 */
   .login-btn {
     padding: 8px 20px;
     background: #FFD700;
@@ -128,13 +189,36 @@
     white-space: nowrap;
     flex-shrink: 0;
     -webkit-tap-highlight-color: transparent;
-    outline: none;
+    outline: none !important;
     cursor: pointer;
+    /* 完全禁用所有动效 */
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    will-change: auto;
+    user-select: none;
+    -webkit-user-select: none;
   }
 
   .login-btn:hover {
     background: #e6c200;
     border-color: #e6c200;
+    /* 禁用 hover 动效 */
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .login-btn:active {
+    /* 禁用 active 状态的动效 */
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .login-btn:focus {
+    /* 禁用 focus 状态的动效 */
+    outline: none !important;
+    transform: none !important;
+    transition: none !important;
   }
 
   /* 移动端响应式 */
@@ -187,13 +271,41 @@
 </header>
 
 <script>
-  // 导航栏初始化 - 支持切换
+  // 导航栏初始化 - 完全固定，无动效
   (function() {
     'use strict';
+    
+    // 强制锁定导航栏位置
+    function lockNavigation() {
+      const header = document.querySelector('header');
+      const headerContainer = document.querySelector('.header-container');
+      
+      if (header) {
+        header.style.setProperty('position', 'fixed', 'important');
+        header.style.setProperty('top', '0', 'important');
+        header.style.setProperty('left', '0', 'important');
+        header.style.setProperty('right', '0', 'important');
+        header.style.setProperty('width', '100%', 'important');
+        header.style.setProperty('transform', 'translateZ(0)', 'important');
+        header.style.setProperty('transition', 'none', 'important');
+        header.style.setProperty('animation', 'none', 'important');
+        header.style.setProperty('will-change', 'auto', 'important');
+      }
+      
+      if (headerContainer) {
+        headerContainer.style.setProperty('transform', 'translateZ(0)', 'important');
+        headerContainer.style.setProperty('transition', 'none', 'important');
+        headerContainer.style.setProperty('animation', 'none', 'important');
+        headerContainer.style.setProperty('will-change', 'auto', 'important');
+      }
+    }
     
     function initNavigation() {
       const navLinks = document.querySelectorAll('.nav-link');
       const currentPath = window.location.pathname;
+      
+      // 立即锁定导航栏
+      lockNavigation();
       
       // 设置当前页面的active状态
       navLinks.forEach(link => {
@@ -225,29 +337,79 @@
           link.classList.add('active');
         }
         
-        // 点击切换处理
+        // 点击切换处理 - 完全无动效
         link.addEventListener('click', function(e) {
+          // 立即锁定导航栏，防止任何移动
+          lockNavigation();
+          
           // 移除所有active状态
-          navLinks.forEach(l => l.classList.remove('active'));
+          navLinks.forEach(l => {
+            l.classList.remove('active');
+            // 强制移除所有可能的样式
+            l.style.transition = 'none';
+            l.style.animation = 'none';
+            l.style.transform = 'none';
+            l.style.outline = 'none';
+          });
+          
           // 添加当前链接的active状态
           this.classList.add('active');
-          // 移除焦点样式
+          
+          // 立即移除焦点样式，防止任何视觉移动
           this.blur();
           this.style.outline = 'none';
-        });
+          this.style.transition = 'none';
+          this.style.animation = 'none';
+          this.style.transform = 'none';
+          
+          // 再次锁定导航栏
+          requestAnimationFrame(lockNavigation);
+        }, { passive: true });
+        
+        // 防止所有可能的动效
+        link.addEventListener('mousedown', function(e) {
+          this.style.transform = 'none';
+          this.style.transition = 'none';
+          lockNavigation();
+        }, { passive: true });
+        
+        link.addEventListener('mouseup', function(e) {
+          this.style.transform = 'none';
+          this.style.transition = 'none';
+          lockNavigation();
+        }, { passive: true });
       });
     }
+    
+    // 页面加载时立即锁定导航栏
+    lockNavigation();
     
     // 页面加载时初始化
     if (document.readyState !== 'loading') {
       initNavigation();
     } else {
-      document.addEventListener('DOMContentLoaded', initNavigation);
+      document.addEventListener('DOMContentLoaded', function() {
+        lockNavigation();
+        initNavigation();
+      });
     }
+    
+    // 监听滚动事件，保持导航栏固定
+    window.addEventListener('scroll', function() {
+      lockNavigation();
+    }, { passive: true });
+    
+    // 监听resize事件，保持导航栏固定
+    window.addEventListener('resize', function() {
+      lockNavigation();
+    }, { passive: true });
     
     // 暴露全局函数供外部调用
     window.updateNavigation = function() {
+      lockNavigation();
       initNavigation();
     };
+    
+    window.lockNavigation = lockNavigation;
   })();
 </script>

@@ -11,14 +11,14 @@ html {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   height: 100%;
-  background: linear-gradient(90deg, #f5f0f0, #f0f6ff, #f9f5f2);
+  background: linear-gradient(90deg, #fff0f5, #ffe4e1, #ffc0cb);
   background-attachment: fixed;
 }
 
 body {
   margin: 0;
   font-family: "Hiragino Sans GB", "冬青黑体", "PingFang SC", "Microsoft YaHei", sans-serif;
-  background: linear-gradient(90deg, #f5f0f0, #f0f6ff, #f9f5f2) !important;
+  background: linear-gradient(90deg, #fff0f5, #ffe4e1, #ffc0cb) !important;
   background-attachment: fixed !important;
   color: #1a252f;
   line-height: 1.6;

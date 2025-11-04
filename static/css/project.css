@@ -3,7 +3,7 @@
   position: relative;
   width: 100%;
   min-height: calc(100vh - 100px);
-  background: linear-gradient(90deg, #f5f0f0, #f0f6ff, #f9f5f2);
+  background: linear-gradient(90deg, #fff0f5, #ffe4e1, #ffc0cb);
   background-attachment: fixed;
   z-index: 0;
 }

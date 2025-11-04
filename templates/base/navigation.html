@@ -156,6 +156,28 @@
   .nav-link:hover {
     cursor: pointer !important;
   }
+  
+  /* 隐藏所有加载指示器和转圈圈 */
+  .loading, .spinner, [class*="loading"], [class*="spinner"],
+  .loading::before, .spinner::before, [class*="loading"]::before, [class*="spinner"]::before,
+  .loading::after, .spinner::after, [class*="loading"]::after, [class*="spinner"]::after {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+  
+  /* 禁用浏览器默认的加载状态和点击高亮 */
+  .nav-link {
+    -webkit-tap-highlight-color: transparent !important;
+    tap-highlight-color: transparent !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+  
+  /* 确保body在加载时不会显示加载状态 */
+  body.loading, body[class*="loading"] {
+    pointer-events: auto !important;
+  }
 
   .nav-link:hover {
     color: #0f1419;
@@ -418,7 +440,11 @@
               });
               this.classList.add('active');
               this.blur();
-              window.location.replace(href);
+              try {
+                window.location.replace(href);
+              } catch(e) {
+                window.location.href = href;
+              }
             }
             return false;
           } else {

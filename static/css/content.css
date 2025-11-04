@@ -1,54 +1,17 @@
-/* 页面特定渐变色背景 - 使用参考网站项目页面的渐变色 */
-.page-index {
+/* 页面容器 - 确保背景显示 */
+.page-index,
+.page-syntax,
+.page-theme,
+.page-ai-programming,
+.page-function-library,
+.page-function-query,
+.project-page {
   position: relative;
   width: 100%;
   min-height: calc(100vh - 100px);
-  background: linear-gradient(90deg, #f5f0f0, #f0f6ff, #f9f5f2);
-  background-attachment: fixed;
+  height: calc(100vh - 100px);
+  background: linear-gradient(90deg, #f5f0f0, #f0f6ff, #f9f5f2) !important;
+  background-attachment: fixed !important;
   z-index: 0;
-}
-
-.page-syntax {
-  position: relative;
-  width: 100%;
-  min-height: calc(100vh - 100px);
-  background: linear-gradient(90deg, #f5f0f0, #f0f6ff, #f9f5f2);
-  background-attachment: fixed;
-  z-index: 0;
-}
-
-.page-theme {
-  position: relative;
-  width: 100%;
-  min-height: calc(100vh - 100px);
-  background: linear-gradient(90deg, #f5f0f0, #f0f6ff, #f9f5f2);
-  background-attachment: fixed;
-  z-index: 0;
-}
-
-.page-ai-programming {
-  position: relative;
-  width: 100%;
-  min-height: calc(100vh - 100px);
-  background: linear-gradient(90deg, #f5f0f0, #f0f6ff, #f9f5f2);
-  background-attachment: fixed;
-  z-index: 0;
-}
-
-.page-function-library {
-  position: relative;
-  width: 100%;
-  min-height: calc(100vh - 100px);
-  background: linear-gradient(90deg, #f5f0f0, #f0f6ff, #f9f5f2);
-  background-attachment: fixed;
-  z-index: 0;
-}
-
-.page-function-query {
-  position: relative;
-  width: 100%;
-  min-height: calc(100vh - 100px);
-  background: linear-gradient(90deg, #f5f0f0, #f0f6ff, #f9f5f2);
-  background-attachment: fixed;
-  z-index: 0;
+  display: block;
 }

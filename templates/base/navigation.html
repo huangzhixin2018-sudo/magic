@@ -303,7 +303,7 @@
   (function() {
     'use strict';
     
-    // 强制锁定导航栏位置
+    // 锁定导航栏位置
     function lockNavigation() {
       const header = document.querySelector('header');
       const headerContainer = document.querySelector('.header-container');
@@ -314,17 +314,13 @@
         header.style.setProperty('left', '0', 'important');
         header.style.setProperty('right', '0', 'important');
         header.style.setProperty('width', '100%', 'important');
-        header.style.setProperty('transform', 'translateZ(0)', 'important');
         header.style.setProperty('transition', 'none', 'important');
         header.style.setProperty('animation', 'none', 'important');
-        header.style.setProperty('will-change', 'auto', 'important');
       }
       
       if (headerContainer) {
-        headerContainer.style.setProperty('transform', 'translateZ(0)', 'important');
         headerContainer.style.setProperty('transition', 'none', 'important');
         headerContainer.style.setProperty('animation', 'none', 'important');
-        headerContainer.style.setProperty('will-change', 'auto', 'important');
       }
     }
     
@@ -365,46 +361,24 @@
           link.classList.add('active');
         }
         
-        // 点击切换处理 - 极速优化，无加载指示器
+        // 点击处理 - 极速优化，无加载指示器
         link.addEventListener('click', function(e) {
-          // 立即阻止默认行为，立即跳转，无加载状态
           const href = this.getAttribute('href');
           if (href && href !== '#' && href !== window.location.pathname) {
-            // 立即锁定导航栏，防止任何移动
+            // 立即锁定导航栏
             lockNavigation();
             
-            // 移除所有active状态（同步操作，无需等待）
-            navLinks.forEach(l => {
-              l.classList.remove('active');
-              l.style.transition = 'none';
-              l.style.animation = 'none';
-              l.style.transform = 'none';
-              l.style.outline = 'none';
-              l.style.cursor = 'default';
-            });
-            
-            // 添加当前链接的active状态
+            // 更新active状态
+            navLinks.forEach(l => l.classList.remove('active'));
             this.classList.add('active');
-            this.style.cursor = 'default';
-            
-            // 立即移除焦点样式，防止任何视觉移动
             this.blur();
-            this.style.outline = 'none';
-            this.style.transition = 'none';
-            this.style.animation = 'none';
-            this.style.transform = 'none';
             
-            // 禁用加载指示器 - 立即跳转，不显示加载状态
+            // 立即跳转，禁用加载指示器
             this.style.pointerEvents = 'none';
-            
-            // 使用 location.href 立即跳转，比 preventDefault + 手动跳转更快
             window.location.href = href;
-            
-            // 阻止默认行为，因为我们手动跳转了
             e.preventDefault();
-            return false;
           } else {
-            // 如果是当前页面，只更新active状态
+            // 当前页面，只更新active状态
             lockNavigation();
             navLinks.forEach(l => l.classList.remove('active'));
             this.classList.add('active');
@@ -412,27 +386,12 @@
             e.preventDefault();
           }
         }, { passive: false });
-        
-        // 防止所有可能的动效
-        link.addEventListener('mousedown', function(e) {
-          this.style.transform = 'none';
-          this.style.transition = 'none';
-          lockNavigation();
-        }, { passive: true });
-        
-        link.addEventListener('mouseup', function(e) {
-          this.style.transform = 'none';
-          this.style.transition = 'none';
-          lockNavigation();
-        }, { passive: true });
       });
     }
     
-    // 页面加载时立即锁定导航栏
-    lockNavigation();
-    
-    // 页面加载时初始化
+    // 初始化
     if (document.readyState !== 'loading') {
+      lockNavigation();
       initNavigation();
     } else {
       document.addEventListener('DOMContentLoaded', function() {
@@ -440,16 +399,6 @@
         initNavigation();
       });
     }
-    
-    // 监听滚动事件，保持导航栏固定
-    window.addEventListener('scroll', function() {
-      lockNavigation();
-    }, { passive: true });
-    
-    // 监听resize事件，保持导航栏固定
-    window.addEventListener('resize', function() {
-      lockNavigation();
-    }, { passive: true });
     
     // 暴露全局函数供外部调用
     window.updateNavigation = function() {

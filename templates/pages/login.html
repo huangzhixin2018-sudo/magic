@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}登录 - 我的网站{% endblock %}
+
+{% block content %}
+<div class="main-container">
+  <main class="content">
+    <div class="article-card" style="max-width: 400px; margin: 80px auto;">
+      <h1 class="article-title" style="text-align: center; margin-bottom: 2rem;">登录</h1>
+      <form style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div>
+          <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">用户名</label>
+          <input type="text" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: inherit; box-sizing: border-box;" placeholder="请输入用户名">
+        </div>
+        <div>
+          <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">密码</label>
+          <input type="password" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: inherit; box-sizing: border-box;" placeholder="请输入密码">
+        </div>
+        <button type="submit" style="width: 100%; padding: 14px; background: #FFD700; color: black; border: 2px solid #FFD700; border-radius: 25px; font-weight: 600; font-size: 1rem; cursor: pointer;">
+          登录
+        </button>
+      </form>
+    </div>
+  </main>
+</div>
+{% endblock %}
+

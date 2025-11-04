@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}我的网站{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/content.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  {% include 'base/navigation.html' %}
+  
+  {% block content %}{% endblock %}
+  
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

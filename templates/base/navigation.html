@@ -1,0 +1,271 @@
+{% load static %}
+<!-- 统一导航栏模板 - 参考网站样式 -->
+<style>
+  /* 导航栏固定定位 */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 9999;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    height: 100px;
+  }
+
+  /* 导航栏容器 */
+  .header-container {
+    max-width: 1180px;
+    width: 100%;
+    margin: 20px auto 0;
+    padding: 0 20px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    border-radius: 50px;
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 1200px) {
+    .header-container {
+      min-width: 1180px;
+    }
+  }
+
+  /* Logo样式 */
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #1a252f;
+    font-weight: 700;
+    font-size: 22px;
+    font-family: "Hiragino Sans GB", "冬青黑体", "PingFang SC", "Microsoft YaHei", sans-serif;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+    background: #FFD700;
+    color: black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  /* 导航链接容器 */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex: 1;
+    justify-content: center;
+  }
+
+  /* 导航链接 */
+  .nav-link {
+    padding: 0;
+    text-decoration: none;
+    color: #1a252f;
+    font-weight: 600;
+    font-size: 17px;
+    font-family: "Hiragino Sans GB", "冬青黑体", "PingFang SC", "Microsoft YaHei", sans-serif;
+    white-space: nowrap;
+    height: 80px;
+    line-height: 80px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    opacity: 0.85;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .nav-link:hover {
+    color: #0f1419;
+    opacity: 1;
+  }
+
+  .nav-link.active {
+    color: #0f1419;
+    opacity: 1;
+  }
+
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #FFD700;
+    pointer-events: none;
+  }
+
+  /* 登录按钮 */
+  .login-btn {
+    padding: 8px 20px;
+    background: #FFD700;
+    color: black;
+    text-decoration: none;
+    border: 2px solid #FFD700;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 14px;
+    font-family: "Hiragino Sans GB", "冬青黑体", "PingFang SC", "Microsoft YaHei", sans-serif;
+    white-space: nowrap;
+    flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .login-btn:hover {
+    background: #e6c200;
+    border-color: #e6c200;
+  }
+
+  /* 移动端响应式 */
+  @media (max-width: 768px) {
+    .header-container {
+      height: 76px;
+      padding: 0 16px;
+      border-radius: 40px;
+      margin: 22px auto 0;
+    }
+
+    .nav-links {
+      gap: 20px;
+    }
+
+    .nav-link {
+      font-size: 15px;
+      height: 76px;
+      line-height: 76px;
+    }
+
+    .nav-link.active::after {
+      height: 2px;
+    }
+
+    .login-btn {
+      padding: 6px 16px;
+      font-size: 13px;
+    }
+  }
+
+  /* Body补偿导航栏高度 */
+  html {
+    overflow-x: hidden;
+    scroll-behavior: auto;
+  }
+
+  body {
+    padding-top: 100px;
+    overflow-x: hidden;
+    scroll-behavior: auto;
+    background-color: #f8f9fa;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      padding-top: 88px;
+    }
+  }
+</style>
+
+<header>
+  <div class="header-container">
+    <a href="{% url 'myapp:index' %}" class="logo">
+      <div class="logo-icon">P</div>
+      <span>我的网站</span>
+    </a>
+    <div class="nav-links">
+      <a href="{% url 'myapp:syntax' %}" class="nav-link" data-page="syntax">语法</a>
+      <a href="{% url 'myapp:function_library' %}" class="nav-link" data-page="function-library">函数库</a>
+      <a href="{% url 'myapp:function_query' %}" class="nav-link" data-page="function-query">函数查询</a>
+      <a href="{% url 'myapp:theme' %}" class="nav-link" data-page="theme">主题</a>
+      <a href="{% url 'myapp:ai_programming' %}" class="nav-link" data-page="ai-programming">AI编程</a>
+      <a href="{% url 'myapp:project' %}" class="nav-link" data-page="project">项目</a>
+    </div>
+    <a href="{% url 'myapp:login' %}" class="login-btn">登录</a>
+  </div>
+</header>
+
+<script>
+  // 导航栏初始化 - 支持切换
+  (function() {
+    'use strict';
+    
+    function initNavigation() {
+      const navLinks = document.querySelectorAll('.nav-link');
+      const currentPath = window.location.pathname;
+      
+      // 设置当前页面的active状态
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        const dataPage = link.getAttribute('data-page');
+        
+        // 清除所有active状态
+        link.classList.remove('active');
+        
+        // 判断是否激活
+        let isActive = false;
+        if (href && href !== '#') {
+          if (currentPath === href || (currentPath === '/' && href === '/')) {
+            isActive = true;
+          } else if (href !== '/' && currentPath.startsWith(href)) {
+            isActive = true;
+          }
+        }
+        
+        // 也可以通过data-page属性判断
+        if (!isActive && dataPage) {
+          const pathSegments = currentPath.split('/').filter(s => s);
+          if (pathSegments.length > 0 && pathSegments[0] === dataPage) {
+            isActive = true;
+          }
+        }
+        
+        if (isActive) {
+          link.classList.add('active');
+        }
+        
+        // 点击切换处理
+        link.addEventListener('click', function(e) {
+          // 移除所有active状态
+          navLinks.forEach(l => l.classList.remove('active'));
+          // 添加当前链接的active状态
+          this.classList.add('active');
+          // 移除焦点样式
+          this.blur();
+          this.style.outline = 'none';
+        });
+      });
+    }
+    
+    // 页面加载时初始化
+    if (document.readyState !== 'loading') {
+      initNavigation();
+    } else {
+      document.addEventListener('DOMContentLoaded', initNavigation);
+    }
+    
+    // 暴露全局函数供外部调用
+    window.updateNavigation = function() {
+      initNavigation();
+    };
+  })();
+</script>

@@ -1,0 +1,381 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}语法 - 我的网站{% endblock %}
+
+{% block content %}
+<div class="main-container">
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h2 class="sidebar-title">教程目录</h2>
+      <ul class="sidebar-menu">
+        <div class="menu-category">基础语法</div>
+        <li class="menu-item active">
+          <a href="#" data-topic="intro">Python简介</a>
+        </li>
+        <li class="menu-item">
+          <a href="#" data-topic="variables">变量与赋值</a>
+        </li>
+        <li class="menu-item">
+          <a href="#" data-topic="comments">注释与文档</a>
+        </li>
+        
+        <div class="menu-category">数据类型</div>
+        <li class="menu-item">
+          <a href="#" data-topic="numbers">数字类型</a>
+        </li>
+        <li class="menu-item">
+          <a href="#" data-topic="strings">字符串</a>
+        </li>
+        <li class="menu-item">
+          <a href="#" data-topic="lists">列表</a>
+        </li>
+        <li class="menu-item">
+          <a href="#" data-topic="dicts">字典</a>
+        </li>
+        
+        <div class="menu-category">控制流</div>
+        <li class="menu-item">
+          <a href="#" data-topic="if">条件语句</a>
+        </li>
+        <li class="menu-item">
+          <a href="#" data-topic="loops">循环语句</a>
+        </li>
+        <li class="menu-item">
+          <a href="#" data-topic="exceptions">异常处理</a>
+        </li>
+        
+        <div class="menu-category">函数</div>
+        <li class="menu-item">
+          <a href="#" data-topic="functions">函数定义</a>
+        </li>
+        <li class="menu-item">
+          <a href="#" data-topic="lambda">Lambda函数</a>
+        </li>
+        <li class="menu-item">
+          <a href="#" data-topic="decorators">装饰器</a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="article-card" id="articleContent">
+      <div class="article-header">
+        <h1 class="article-title">Python语法</h1>
+        <div class="article-subtitle">选择左侧分类开始学习</div>
+      </div>
+      <article class="article-content">
+        <div class="empty-state">
+          <h3>欢迎学习Python语法</h3>
+          <p>点击左侧菜单中的分类，开始您的Python学习之旅。</p>
+          <p>我们提供了从基础到进阶的完整教程内容。</p>
+        </div>
+      </article>
+    </div>
+  </main>
+</div>
+
+<script>
+// 语法页面内容切换 - 简洁高效版本
+(function() {
+  'use strict';
+  
+  // 模拟文章内容数据
+  const articles = {
+    intro: {
+      title: 'Python简介',
+      subtitle: '了解Python编程语言的基础知识',
+      content: `
+        <div class="article-summary">
+          <p>Python是一种高级、解释型、通用的编程语言，由Guido van Rossum创建，并于1991年首次发布。Python的设计哲学强调代码的可读性和简洁的语法。</p>
+        </div>
+        
+        <h2>Python的特点</h2>
+        <ul>
+          <li><strong>简洁易读：</strong>Python的语法清晰简洁，易于学习和使用</li>
+          <li><strong>跨平台：</strong>可以在Windows、macOS、Linux等多种操作系统上运行</li>
+          <li><strong>功能强大：</strong>拥有丰富的标准库和第三方库</li>
+          <li><strong>面向对象：</strong>支持面向对象编程</li>
+        </ul>
+        
+        <h2>第一个Python程序</h2>
+        <p>让我们从经典的"Hello, World!"程序开始：</p>
+        <pre><code>print("Hello, World!")
+</code></pre>
+        
+        <div class="note">
+          <strong>提示：</strong>在Python中，print()函数用于输出文本到控制台。
+        </div>
+      `
+    },
+    variables: {
+      title: '变量与赋值',
+      subtitle: '学习如何在Python中创建和使用变量',
+      content: `
+        <h2>什么是变量？</h2>
+        <p>变量是存储数据的容器。在Python中，变量不需要提前声明类型，可以直接赋值使用。</p>
+        
+        <h2>变量赋值</h2>
+        <pre><code># 整数变量
+age = 25
+
+# 字符串变量
+name = "张三"
+
+# 浮点数变量
+price = 99.99
+
+# 布尔变量
+is_active = True
+</code></pre>
+        
+        <h2>变量命名规则</h2>
+        <ul>
+          <li>变量名只能包含字母、数字和下划线</li>
+          <li>变量名不能以数字开头</li>
+          <li>变量名区分大小写</li>
+          <li>不能使用Python关键字作为变量名</li>
+        </ul>
+      `
+    },
+    numbers: {
+      title: '数字类型',
+      subtitle: 'Python中的整数和浮点数',
+      content: `
+        <h2>整数 (int)</h2>
+        <p>整数是没有小数部分的数字，可以是正数、负数或零。</p>
+        <pre><code>x = 10
+y = -5
+z = 0
+</code></pre>
+        
+        <h2>浮点数 (float)</h2>
+        <p>浮点数包含小数部分。</p>
+        <pre><code>pi = 3.14159
+price = 99.99
+</code></pre>
+        
+        <h2>数学运算</h2>
+        <pre><code># 加法
+result = 10 + 5  # 15
+
+# 减法
+result = 10 - 5  # 5
+
+# 乘法
+result = 10 * 5  # 50
+
+# 除法
+result = 10 / 3  # 3.333...
+
+# 整数除法
+result = 10 // 3  # 3
+
+# 取余
+result = 10 % 3  # 1
+
+# 幂运算
+result = 2 ** 3  # 8
+</code></pre>
+      `
+    },
+    strings: {
+      title: '字符串',
+      subtitle: 'Python中文本数据的处理',
+      content: `
+        <h2>字符串基础</h2>
+        <p>字符串是用引号括起来的文本。可以使用单引号、双引号或三引号。</p>
+        <pre><code># 单引号
+name = 'Python'
+
+# 双引号
+message = "Hello, World!"
+
+# 三引号（多行字符串）
+text = """这是
+多行
+字符串"""
+</code></pre>
+        
+        <h2>字符串操作</h2>
+        <pre><code># 字符串连接
+greeting = "Hello" + " " + "World"
+
+# 字符串重复
+line = "-" * 20
+
+# 字符串索引
+text = "Python"
+first_char = text[0]  # 'P'
+
+# 字符串切片
+substring = text[0:2]  # 'Py'
+</code></pre>
+      `
+    },
+    lists: {
+      title: '列表',
+      subtitle: 'Python中的列表数据结构',
+      content: `
+        <h2>创建列表</h2>
+        <p>列表是用方括号[]定义的，可以包含不同类型的元素。</p>
+        <pre><code># 空列表
+empty_list = []
+
+# 数字列表
+numbers = [1, 2, 3, 4, 5]
+
+# 混合列表
+mixed = [1, "hello", 3.14, True]
+</code></pre>
+        
+        <h2>列表操作</h2>
+        <pre><code>fruits = ["apple", "banana"]
+
+# 添加元素
+fruits.append("orange")
+
+# 访问元素
+first = fruits[0]  # "apple"
+
+# 修改元素
+fruits[1] = "grape"
+
+# 列表长度
+length = len(fruits)
+</code></pre>
+      `
+    }
+  };
+  
+  function init() {
+    const menuItems = document.querySelectorAll('.menu-item a');
+    const articleContent = document.getElementById('articleContent');
+    
+    if (!menuItems.length || !articleContent) return;
+    
+    // 绑定点击事件
+    menuItems.forEach(item => {
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // 关键：立即锁定导航栏，防止抖动
+        lockNavigation();
+        
+        // 保存当前滚动位置（相对内容区域顶部）
+        const contentArea = document.querySelector('.content');
+        const scrollTop = contentArea ? contentArea.scrollTop : window.pageYOffset;
+        
+        // 移除所有active状态
+        menuItems.forEach(link => {
+          link.closest('.menu-item').classList.remove('active');
+        });
+        
+        // 添加当前active状态
+        this.closest('.menu-item').classList.add('active');
+        
+        // 获取主题
+        const topic = this.getAttribute('data-topic');
+        if (topic && articles[topic]) {
+          // 使用 requestAnimationFrame 优化渲染，防止抖动
+          requestAnimationFrame(() => {
+            showArticle(articles[topic]);
+            // 内容更新后恢复滚动位置
+            requestAnimationFrame(() => {
+              if (contentArea) {
+                contentArea.scrollTop = 0; // 重置到顶部
+              } else {
+                window.scrollTo(0, 0);
+              }
+              // 再次锁定导航栏
+              lockNavigation();
+            });
+          });
+        }
+        
+        // 移除焦点，防止样式闪烁
+        this.blur();
+      });
+    });
+    
+    // 默认显示第一篇文章
+    const firstActive = document.querySelector('.menu-item.active a');
+    if (firstActive) {
+      const topic = firstActive.getAttribute('data-topic');
+      if (topic && articles[topic]) {
+        showArticle(articles[topic]);
+      }
+    }
+  }
+  
+  // 锁定导航栏位置，防止抖动
+  function lockNavigation() {
+    const header = document.querySelector('header');
+    const headerContainer = document.querySelector('.header-container');
+    
+    if (header) {
+      header.style.setProperty('position', 'fixed', 'important');
+      header.style.setProperty('top', '0', 'important');
+      header.style.setProperty('left', '0', 'important');
+      header.style.setProperty('right', '0', 'important');
+      header.style.setProperty('width', '100%', 'important');
+      header.style.setProperty('transition', 'none', 'important');
+      header.style.setProperty('animation', 'none', 'important');
+      header.style.setProperty('transform', 'none', 'important');
+    }
+    
+    if (headerContainer) {
+      headerContainer.style.setProperty('transition', 'none', 'important');
+      headerContainer.style.setProperty('animation', 'none', 'important');
+      headerContainer.style.setProperty('transform', 'none', 'important');
+      headerContainer.style.setProperty('position', 'relative', 'important');
+    }
+    
+    // 调用导航栏锁定函数（如果存在）
+    if (typeof window.applyLockedPosition === 'function') {
+      window.applyLockedPosition();
+    }
+  }
+  
+  function showArticle(article) {
+    const articleContent = document.getElementById('articleContent');
+    if (!articleContent) return;
+    
+    // 关键：设置固定最小高度，防止内容切换时高度变化导致抖动
+    const currentHeight = articleContent.offsetHeight;
+    articleContent.style.minHeight = currentHeight + 'px';
+    
+    // 更新内容
+    articleContent.innerHTML = `
+      <div class="article-header">
+        <h1 class="article-title">${article.title}</h1>
+        <div class="article-subtitle">${article.subtitle}</div>
+      </div>
+      <article class="article-content">
+        ${article.content}
+      </article>
+    `;
+    
+    // 内容更新后，使用实际高度，移除临时固定高度
+    requestAnimationFrame(() => {
+      const newHeight = articleContent.scrollHeight;
+      articleContent.style.minHeight = newHeight + 'px';
+      
+      // 延迟移除固定高度，让浏览器完成渲染
+      setTimeout(() => {
+        articleContent.style.minHeight = '';
+      }, 100);
+    });
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+{% endblock %}
+

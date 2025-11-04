@@ -1,9 +1,9 @@
-/* 项目页面背景 - 参考网站的简约风格 */
+/* 项目页面背景 - 三色混合柔和渐变 */
 .project-page {
   position: relative;
   width: 100%;
   min-height: calc(100vh - 100px);
-  background: linear-gradient(90deg, #f5f0f0, #f0f6ff, #f9f5f2);
+  background: linear-gradient(135deg, #f5f0f0 0%, #f0f6ff 50%, #f9f5f2 100%);
   background-attachment: fixed;
   z-index: 0;
 }

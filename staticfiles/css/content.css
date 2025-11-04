@@ -1,84 +1,84 @@
-/* 页面容器 - 简约风格渐变背景，凸显白色导航栏 */
+/* 页面容器 - 三色混合柔和渐变背景，覆盖全屏 */
 
-/* 首页 - 参考项目页面的柔和渐变 */
+/* 首页 - 柔和的灰蓝米色三色渐变 */
 .page-index {
   position: relative;
   width: 100%;
   min-height: calc(100vh - 100px);
   height: calc(100vh - 100px);
-  background: linear-gradient(90deg, #f5f0f0, #f0f6ff, #f9f5f2) !important;
+  background: linear-gradient(135deg, #f5f0f0 0%, #f0f6ff 50%, #f9f5f2 100%) !important;
   background-attachment: fixed !important;
   z-index: 0;
   display: block;
 }
 
-/* 语法页面 - 柔和的蓝绿色渐变 */
+/* 语法页面 - 柔和的蓝绿黄三色渐变 */
 .page-syntax {
   position: relative;
   width: 100%;
   min-height: calc(100vh - 100px);
   height: calc(100vh - 100px);
-  background: linear-gradient(90deg, #f0f9ff, #f0fdf4, #fefce8) !important;
+  background: linear-gradient(135deg, #f0f9ff 0%, #f0fdf4 50%, #fefce8 100%) !important;
   background-attachment: fixed !important;
   z-index: 0;
   display: block;
 }
 
-/* 主题页面 - 柔和的紫色渐变 */
+/* 主题页面 - 柔和的紫粉蓝三色渐变 */
 .page-theme {
   position: relative;
   width: 100%;
   min-height: calc(100vh - 100px);
   height: calc(100vh - 100px);
-  background: linear-gradient(90deg, #faf5ff, #f3e8ff, #fce7f3) !important;
+  background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 50%, #fce7f3 100%) !important;
   background-attachment: fixed !important;
   z-index: 0;
   display: block;
 }
 
-/* AI编程页面 - 柔和的青色渐变 */
+/* AI编程页面 - 柔和的青绿蓝三色渐变 */
 .page-ai-programming {
   position: relative;
   width: 100%;
   min-height: calc(100vh - 100px);
   height: calc(100vh - 100px);
-  background: linear-gradient(90deg, #ecfeff, #f0fdfa, #f0fdf4) !important;
+  background: linear-gradient(135deg, #ecfeff 0%, #f0fdfa 50%, #e0f2fe 100%) !important;
   background-attachment: fixed !important;
   z-index: 0;
   display: block;
 }
 
-/* 函数库页面 - 柔和的蓝色渐变 */
+/* 函数库页面 - 柔和的蓝紫青三色渐变 */
 .page-function-library {
   position: relative;
   width: 100%;
   min-height: calc(100vh - 100px);
   height: calc(100vh - 100px);
-  background: linear-gradient(90deg, #eff6ff, #f0f9ff, #f0f4ff) !important;
+  background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 50%, #f0f4ff 100%) !important;
   background-attachment: fixed !important;
   z-index: 0;
   display: block;
 }
 
-/* 函数查询页面 - 柔和的绿色渐变 */
+/* 函数查询页面 - 柔和的绿青蓝三色渐变 */
 .page-function-query {
   position: relative;
   width: 100%;
   min-height: calc(100vh - 100px);
   height: calc(100vh - 100px);
-  background: linear-gradient(90deg, #f0fdf4, #ecfdf5, #f0fdfa) !important;
+  background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #f0fdfa 100%) !important;
   background-attachment: fixed !important;
   z-index: 0;
   display: block;
 }
 
-/* 项目页面 - 参考网站的原始风格 */
+/* 项目页面 - 柔和的灰蓝米三色渐变 */
 .project-page {
   position: relative;
   width: 100%;
   min-height: calc(100vh - 100px);
   height: calc(100vh - 100px);
-  background: linear-gradient(90deg, #f5f0f0, #f0f6ff, #f9f5f2) !important;
+  background: linear-gradient(135deg, #f5f0f0 0%, #f0f6ff 50%, #f9f5f2 100%) !important;
   background-attachment: fixed !important;
   z-index: 0;
   display: block;
